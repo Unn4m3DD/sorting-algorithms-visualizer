@@ -1,4 +1,4 @@
-var range_value = 150
+var range_value = 100
 Object.defineProperty(Array.prototype, 'shuffle', {
   value: function () {
     for (let i = this.length - 1; i > 0; i--) {
