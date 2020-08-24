@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Sorting Visualizer</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+  <script src='index.js' defer></script>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="header-container">
+      <header class="header">
+        <div class="a-container-container f1" onclick="populate_array(array, range_value); display_array(array)">
+          <div class="a-container">
+            <a class="noselect">Generate New Array</a>
+          </div>
+        </div>
+        <div class=" vl"></div>
+        <div class="a-container-container f2">
+          <div class="a-container">
+            <a>Change Array Size</a>
+          </div>
+          <input type="range" min="30" max="150" step="1"
+            onclick="range_value = this.value; populate_array(array, this.value); display_array(array);" />
+        </div>
+        <div class="vl"></div>
+        <div class="a-container-container f3">
+          <div class="a-container" onclick="merge_sort(array)">
+            <a>Merge Sort</a>
+          </div>
+          <div class="a-container" onclick="quick_sort(array)">
+            <a>Quick Sort</a>
+          </div>
+          <div class="a-container" onclick="heap_sort(array)">
+            <a>Heap Sort</a>
+          </div>
+          <div class="a-container" onclick="bubble_sort(array)">
+            <a>Bubble Sort</a>
+          </div>
+        </div>
+        <div class="vl"></div>
+        <div class="a-container-container f4"></div>
+      </header>
+
+      <div class="bar-container" id="bar_container">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
