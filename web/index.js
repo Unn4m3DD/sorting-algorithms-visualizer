@@ -1,4 +1,5 @@
 var range_value = 100
+var locked = false
 Object.defineProperty(Array.prototype, 'shuffle', {
   value: function () {
     for (let i = this.length - 1; i > 0; i--) {
@@ -48,10 +49,12 @@ const swap = async (array, i, j) => {
 }
 
 const bubble_sort = async (array) => {
+  if (locked) return;
+  locked = true
   let j = 0
   let i = 1
   const inner_bubble_sort = async () => {
-    if (j >= array.length) return
+    if (j >= array.length) { locked = false; return }
     if (i >= array.length - j) { j++; i = 1 }
     if (array[i] < array[i - 1]) {
       await swap(array, i, i - 1)
@@ -99,9 +102,12 @@ const merge_sort_rec = async (array, left, right) => {
   await merge(array, left, right)
 }
 
-const merge_sort = (array) => {
-  merge_sort_rec(array, 0, array.length)
+const merge_sort = async (array) => {
+  if (locked) return;
+  locked = true
+  await merge_sort_rec(array, 0, array.length)
   display_array(array)
+  locked = false
 }
 const quick_sort_rec = async (array, left, right) => {
   if (right - left <= 1) return
@@ -114,12 +120,14 @@ const quick_sort_rec = async (array, left, right) => {
   }
   await quick_sort_rec(array, left, i)
   await quick_sort_rec(array, i, right);
-
 }
 
 const quick_sort = async (array) => {
+  if (locked) return;
+  locked = true
   display_array(array)
-  quick_sort_rec(array, 0, array.length)
+  await quick_sort_rec(array, 0, array.length)
+  locked = false
 }
 
 const get_child = (parent, nth) => {
@@ -130,7 +138,7 @@ const get_parent = (child) => {
 }
 
 const insert_heap = async (array, position) => {
-  while (array[get_parent(position)] > array[position]) {
+  while (array[get_parent(position)] < array[position]) {
     await swap(array, position, get_parent(position))
     position = get_parent(position)
   }
@@ -144,8 +152,8 @@ const remove_heap = async (array, tail) => {
     let child1 = get_child(current_position, 2)
     if (child1 >= tail) child1 = child0
     if (child0 >= tail) return
-    const new_position = array[child0] < array[child1] ? child0 : child1
-    if (array[current_position] <= array[new_position]) return
+    const new_position = array[child0] > array[child1] ? child0 : child1
+    if (array[current_position] >= array[new_position]) return
     await swap(array, current_position, new_position)
     current_position = new_position
   }
@@ -153,10 +161,13 @@ const remove_heap = async (array, tail) => {
 
 
 const heap_sort = async (array) => {
+  if (locked) return;
+  locked = true
   for (let i = 0; i < array.length; i++)
     await insert_heap(array, i)
   for (let i = array.length - 1; i >= 0; i--)
     await remove_heap(array, i)
+  locked = false
 }
 
 
