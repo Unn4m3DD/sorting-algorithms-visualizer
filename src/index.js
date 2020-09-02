@@ -1,5 +1,4 @@
 const express = require('express')
 const app = express()
-const port = 3000
 app.use('/', express.static('web'))
-app.listen(port)
+app.listen(3000, '192.168.1.101')
