@@ -1,0 +1,4 @@
+{
+  "setup": "npm i",
+  "run": "node src/index.js"
+}
