@@ -1,0 +1,12 @@
+name: update_service_provider
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: update on service provider
+        run: curl http://148.63.171.198/update?repo=sorting-algorithms-visualizer
