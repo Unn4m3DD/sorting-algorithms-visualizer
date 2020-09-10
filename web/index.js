@@ -198,7 +198,7 @@ const radix_sort = async (array) => {
     }
   }
   for (let div = 1; div < 1001; div *= 10) {
-    let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let counts = new Array(10).fill(0)
     let other = new Array(array.length)
     for (let i = 0; i < array.length; i++) {
       counts[Math.floor((array[i] / div) % 10)]++

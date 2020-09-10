@@ -63,6 +63,7 @@ body {
 
 .a-container {
   background-color: #2e4053;
+  transition: background-color .3s;
   -webkit-transition: background-color .3s;
 }
 .locked {
@@ -71,6 +72,7 @@ body {
 
 .a-container:hover {
   background-color: #212f3d;
+  transition: background-color .3s;
   -webkit-transition: background-color .3s;
 }
 
