@@ -1,5 +1,22 @@
 var range_value = 100
 var locked = false
+var a_container_list = document.getElementsByClassName("a-container")
+var header_list = document.getElementsByClassName("header")
+const set_locked = () => {
+  locked = true
+  for (let i = 0; i < a_container_list.length; i++)
+    a_container_list[i].classList.add("locked")
+  for (let i = 0; i < header_list.length; i++)
+    header_list[i].classList.add("locked")
+}
+const set_unlocked = () => {
+  locked = false
+  for (let i = 0; i < a_container_list.length; i++)
+    a_container_list[i].classList.remove("locked")
+  for (let i = 0; i < header_list.length; i++)
+    header_list[i].classList.remove("locked")
+}
+
 Object.defineProperty(Array.prototype, 'shuffle', {
   value: function () {
     for (let i = this.length - 1; i > 0; i--) {
@@ -24,7 +41,7 @@ const populate_array = (array, size) => {
   array.splice(0, array.length)
   const max = 400
   for (let i = 0; i < size; i++) {
-    array.push(max / size * i)
+    array.push(Math.floor(max / size) * i)
   }
   array = array.shuffle()
 }
@@ -50,11 +67,11 @@ const swap = async (array, i, j) => {
 
 const bubble_sort = async (array) => {
   if (locked) return;
-  locked = true
+  set_locked()
   let j = 0
   let i = 1
   const inner_bubble_sort = async () => {
-    if (j >= array.length) { locked = false; return }
+    if (j >= array.length) { set_unlocked(); return }
     if (i >= array.length - j) { j++; i = 1 }
     if (array[i] < array[i - 1]) {
       await swap(array, i, i - 1)
@@ -104,10 +121,10 @@ const merge_sort_rec = async (array, left, right) => {
 
 const merge_sort = async (array) => {
   if (locked) return;
-  locked = true
+  set_locked()
   await merge_sort_rec(array, 0, array.length)
   display_array(array)
-  locked = false
+  set_unlocked()
 }
 const quick_sort_rec = async (array, left, right) => {
   if (right - left <= 1) return
@@ -124,10 +141,10 @@ const quick_sort_rec = async (array, left, right) => {
 
 const quick_sort = async (array) => {
   if (locked) return;
-  locked = true
+  set_locked()
   display_array(array)
   await quick_sort_rec(array, 0, array.length)
-  locked = false
+  set_unlocked()
 }
 
 const get_child = (parent, nth) => {
@@ -162,14 +179,44 @@ const remove_heap = async (array, tail) => {
 
 const heap_sort = async (array) => {
   if (locked) return;
-  locked = true
+  set_locked()
   for (let i = 0; i < array.length; i++)
     await insert_heap(array, i)
   for (let i = array.length - 1; i >= 0; i--)
     await remove_heap(array, i)
-  locked = false
+  set_unlocked()
 }
 
+
+const radix_sort = async (array) => {
+  if (locked) return;
+  set_locked()
+  const cum_sum = (array) => {
+    array[0]--
+    for (let i = 1; i < array.length; i++) {
+      array[i] = array[i - 1] + array[i]
+    }
+  }
+  for (let div = 1; div < 1001; div *= 10) {
+    let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let other = new Array(array.length)
+    for (let i = 0; i < array.length; i++) {
+      counts[Math.floor((array[i] / div) % 10)]++
+    }
+    console.log(counts)
+    cum_sum(counts)
+    console.log(counts)
+    for (let i = array.length - 1; i >= 0; i--)
+      other[counts[Math.floor((array[i] / div) % 10)]--] = array[i]
+
+    for (let i = 0; i < array.length; i++) {
+      array[i] = other[i]
+      display_array(array)
+      await sleep(1)
+    }
+  }
+  set_unlocked()
+}
 
 populate_array(array, range_value)
 display_array(array)
