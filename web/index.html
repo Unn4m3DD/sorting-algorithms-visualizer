@@ -26,7 +26,7 @@
           <div class="a-container">
             <a>Change Array Size</a>
           </div>
-          <input type="range" min="30" max="150" step="1" value="100"
+          <input type="range" min="30" max="360" step="1" value="180"
             onclick="if(locked)return; range_value = this.value; populate_array(array, this.value); display_array(array);" />
         </div>
         <div class="vl"></div>
@@ -49,8 +49,14 @@
         </div>
         <div class="vl"></div>
         <div class="a-container-container f4"></div>
+        <div class="vl"></div>
+        <div class="a-container-container f1">
+          <div class="a-container" onclick="circle_draw = !circle_draw; canvas.style.display = circle_draw ? 'flex' : 'none'; bar_container.style.display = !circle_draw ? 'flex' : 'none'; display_array(array)">
+            <a>Toggle Circle</a>
+          </div>
+        </div>
       </header>
-
+      <canvas id="myCanvas" width="1600" height="700"></canvas>
       <div class="bar-container" id="bar_container">
       </div>
     </div>

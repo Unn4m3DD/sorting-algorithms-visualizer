@@ -1,7 +1,14 @@
-var range_value = 100
+var range_value = 180
+const max = 360
+let circle_draw = true
 var locked = false
 var a_container_list = document.getElementsByClassName("a-container")
 var header_list = document.getElementsByClassName("header")
+var canvas = document.getElementById('myCanvas');
+const bar_container = document.getElementById("bar_container")
+canvas.style.display = circle_draw ? 'flex' : 'none'
+bar_container.style.display = !circle_draw ? 'flex' : 'none'
+var context = canvas.getContext('2d');
 const set_locked = () => {
   locked = true
   for (let i = 0; i < a_container_list.length; i++)
@@ -35,22 +42,35 @@ Object.defineProperty(Array.prototype, 'contains', {
   }
 })
 
-const bar_container = document.getElementById("bar_container")
 var array = [];
 const populate_array = (array, size) => {
   array.splice(0, array.length)
-  const max = 400
   for (let i = 0; i < size; i++) {
     array.push(Math.floor(max / size) * i)
   }
+  console.log(array)
   array = array.shuffle()
 }
 
 let current = [0]
 const display_array = (array) => {
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = 300;
+  let step = Math.PI * 2 / array.length
+  let current_angle = 0
   let content = "";
   array.forEach((element) => {
-    content += `\n<div class="bar" style="height: ${element}px; width: 10px; background-color: ${!current.contains(element) ? "#000" : "#0f0"};"></div>`
+    if (circle_draw) {
+      context.beginPath();
+      context.arc(centerX, centerY, radius, current_angle, current_angle + step);
+      context.lineTo(centerX, centerY)
+      current_angle += step
+      context.fillStyle = `hsl(${Math.round(element * 360 / max)}, 100%, 50%)`;
+      context.closePath();
+      context.fill();
+    } else
+      content += `\n<div class="bar" style="height: ${element}px; width: 10px; background-color: ${!current.contains(element) ? `hsl(${Math.round(element * 360 / max)}, 100%, 50%)` : "#0f0"};"></div>`
   })
   bar_container.innerHTML = content
 }
