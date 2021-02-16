@@ -2,7 +2,7 @@
 This is a website for sorting algorithms visualization
 
 ## Where can I use it?
-Enter in http://148.63.171.198/ and select sorting-algorithms-visualizer
+Enter in http://unn4m3dd.xyz/ and select sorting-algorithms-visualizer
 
 ## Available algorithms
 5 of the major sorting algorithms are implemented and can be seen in action:  
