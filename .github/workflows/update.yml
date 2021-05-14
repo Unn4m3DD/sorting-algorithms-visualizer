@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: update on service provider
-        run: curl http://unn4m3dd.xyz/update?repo=sorting-algorithms-visualizer
+        run: curl https://unn4m3dd.xyz/update?repo=sorting-algorithms-visualizer
