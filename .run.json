@@ -1,4 +1,6 @@
 {
   "setup": "npm i",
-  "run": "node src/index.js"
+  "run": "node src/index.js",
+  "title": "Sorting algorithms visualizer",
+  "subtitle": "Sorting algorithms visualizer implemented in JS/TS and HTML"
 }
