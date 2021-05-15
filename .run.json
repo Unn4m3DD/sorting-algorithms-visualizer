@@ -3,5 +3,5 @@
   "run": "node src/index.js",
   "title": "Sorting algorithms visualizer",
   "subtitle": "Sorting algorithms visualizer implemented in JS/TS and HTML",
-  "image": "https://raw.githubusercontent.com/Unn4m3DD/sorting-algorithms-visualizer/master/demo.png"
+  "video": "https://raw.githubusercontent.com/Unn4m3DD/sorting-algorithms-visualizer/master/demo.mp4"
 }
