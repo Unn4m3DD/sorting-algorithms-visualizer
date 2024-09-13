@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto Mono"
       rel="stylesheet"
     />
-    <script src="index.js" defer></script>
+    <script defer src="index.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
@@ -23,19 +23,23 @@
           class="flex flex-row items-center justify-center gap-x-8 grow lg:justify-start justify-between"
         >
           <a
-            class="rounded-full cursor-pointer bg-blue-500 flex items-center justify-center px-4 py-2 h-fit text-white font-semibold"
+            data-enabled="cursor-pointer hover:bg-blue-600 active:bg-blue-700 bg-blue-500"
+            data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+            class="rounded-full transition-all select-none flex items-center justify-center px-4 py-2 h-fit text-white font-semibold"
           >
-            New Array</a
-          >
+            New Array
+          </a>
           <div class="flex flex-col items-center gap-1">
-            <a class="flex min-w-fit">Array Size</a>
+            <a class="flex min-w-fit font-semibold select-none text-gray-800">Array Size</a>
             <input
               type="range"
               min="30"
               max="360"
               step="1"
               value="180"
-              class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              data-enabled="cursor-pointer accent-blue-600 hover:accent-blue-600 active:accent-blue-700"
+              data-disabled="cursor-normal accent-red-500 hover:accent-red-500 active:accent-red-500 pointer-events-none"
+              class="w-full h-2 bg-gray-200 rounded-lg appearance-none"
               onclick="if(locked)return; range_value = this.value; populate_array(array, this.value); display_array(array);"
             />
           </div>
@@ -45,38 +49,49 @@
         >
           <div class="flex flex-row items-center grow gap-2 flex-wrap">
             <div
-              class="rounded-full cursor-pointer py-2 px-4 bg-indigo-500 text-white text-nowrap"
+              data-enabled="cursor-pointer hover:bg-indigo-600 active:bg-indigo-700 bg-indigo-500"
+              data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+              class="rounded-full py-2 px-4 transition-all select-none text-white text-nowrap"
               onclick="merge_sort(array)"
             >
               Merge Sort
             </div>
             <div
-              class="rounded-full cursor-pointer py-2 px-4 bg-indigo-500 text-white text-nowrap"
+              data-enabled="cursor-pointer hover:bg-indigo-600 active:bg-indigo-700 bg-indigo-500"
+              data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+              class="rounded-full py-2 px-4 transition-all select-none text-white text-nowrap"
               onclick="quick_sort(array)"
             >
               Quick Sort
             </div>
             <div
-              class="rounded-full cursor-pointer py-2 px-4 bg-indigo-500 text-white text-nowrap"
+              data-enabled="cursor-pointer hover:bg-indigo-600 active:bg-indigo-700 bg-indigo-500"
+              data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+              class="rounded-full py-2 px-4 transition-all select-none text-white text-nowrap"
               onclick="heap_sort(array)"
             >
               Heap Sort
             </div>
             <div
-              class="rounded-full cursor-pointer py-2 px-4 bg-indigo-500 text-white text-nowrap"
+              data-enabled="cursor-pointer hover:bg-indigo-600 active:bg-indigo-700 bg-indigo-500"
+              data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+              class="rounded-full py-2 px-4 transition-all select-none text-white text-nowrap"
               onclick="bubble_sort(array)"
             >
               Bubble Sort
             </div>
             <div
-              class="rounded-full cursor-pointer py-2 px-4 bg-indigo-500 text-white text-nowrap"
+              data-enabled="cursor-pointer hover:bg-indigo-600 active:bg-indigo-700 bg-indigo-500"
+              data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
+              class="rounded-full py-2 px-4 transition-all select-none text-white text-nowrap"
               onclick="radix_sort(array)"
             >
               Radix Sort
             </div>
           </div>
           <div
-            class="rounded-full cursor-pointer py-2 px-4 bg-cyan-500 text-white min-w-fit"
+            data-enabled="cursor-pointer hover:bg-cyan-600 active:bg-cyan-700 bg-cyan-500"
+            class="rounded-full py-2 px-4 transition-all select-none text-white min-w-fit"
             onclick="circle_draw = !circle_draw; canvas.style.display = circle_draw ? 'flex' : 'none'; bar_container.style.display = !circle_draw ? 'flex' : 'none'; display_array(array)"
           >
             Toggle Circle

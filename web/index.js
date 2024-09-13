@@ -12,19 +12,21 @@ bar_container.style.display = !circle_draw ? "flex" : "none";
 var context = canvas.getContext("2d");
 const set_locked = () => {
   locked = true;
-  for (let i = 0; i < a_container_list.length; i++)
-    a_container_list[i].classList.add("locked");
-  for (let i = 0; i < header_list.length; i++)
-    header_list[i].classList.add("locked");
+  document
+    .querySelectorAll("[data-disabled]")
+    .forEach((e) =>
+      e.classList.add(...e.getAttribute("data-disabled").split(" "))
+    );
 };
 const set_unlocked = () => {
   locked = false;
-  for (let i = 0; i < a_container_list.length; i++)
-    a_container_list[i].classList.remove("locked");
-  for (let i = 0; i < header_list.length; i++)
-    header_list[i].classList.remove("locked");
+  document
+    .querySelectorAll("[data-enabled]")
+    .forEach((e) =>
+      e.classList.add(...e.getAttribute("data-enabled").split(" "))
+    );
 };
-
+set_unlocked();
 Object.defineProperty(Array.prototype, "shuffle", {
   value: function () {
     for (let i = this.length - 1; i > 0; i--) {
