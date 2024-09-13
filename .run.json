@@ -1,7 +1,0 @@
-{
-  "setup": "npm i",
-  "run": "node src/index.js",
-  "title": "Sorting algorithms visualizer",
-  "subtitle": "Sorting algorithms visualizer implemented in JS/TS and HTML",
-  "video": "https://raw.githubusercontent.com/Unn4m3DD/sorting-algorithms-visualizer/master/demo.mp4"
-}
