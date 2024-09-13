@@ -13,15 +13,15 @@ var context = canvas.getContext("2d");
 const set_locked = () => {
   locked = true;
   document.querySelectorAll("[data-disabled]").forEach((e) => {
-    e.classList.add(...e.getAttribute("data-disabled").split(" "));
     e.classList.remove(...e.getAttribute("data-enabled").split(" "));
+    e.classList.add(...e.getAttribute("data-disabled").split(" "));
   });
 };
 const set_unlocked = () => {
   locked = false;
   document.querySelectorAll("[data-enabled]").forEach((e) => {
-    e.classList.add(...e.getAttribute("data-enabled").split(" "));
     e.classList.remove(...e.getAttribute("data-disabled").split(" "));
+    e.classList.add(...e.getAttribute("data-enabled").split(" "));
   });
 };
 set_unlocked();
