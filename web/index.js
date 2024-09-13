@@ -2,7 +2,6 @@ var range_value = 180;
 const max = 360 * 2;
 let circle_draw = false;
 var locked = false;
-var a_container_list = document.getElementsByClassName("a-container");
 var header_list = document.getElementsByClassName("header");
 var canvas = document.getElementById("myCanvas");
 
@@ -25,6 +24,7 @@ const set_unlocked = () => {
   });
 };
 set_unlocked();
+
 Object.defineProperty(Array.prototype, "shuffle", {
   value: function () {
     for (let i = this.length - 1; i > 0; i--) {
@@ -34,14 +34,7 @@ Object.defineProperty(Array.prototype, "shuffle", {
     return this;
   },
 });
-Object.defineProperty(Array.prototype, "contains", {
-  value: function (element) {
-    for (let i = 0; i < this.length; i++) {
-      if (this[i] == element) return true;
-    }
-    return false;
-  },
-});
+
 
 var array = [];
 const populate_array = (array, size) => {
@@ -84,7 +77,7 @@ const display_array = (array) => {
       content += `\n<div class="bar" style="height: ${
         (element / max) * 100
       }%; width: ${100 / array.length}%; background-color: ${
-        !current.contains(element)
+        !current.includes(element)
           ? `hsl(${Math.floor(Math.round((element * 360) / max))}, 100%, 50%)`
           : "#0000"
       };"></div>`;

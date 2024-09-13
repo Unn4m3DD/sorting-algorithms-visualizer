@@ -22,6 +22,7 @@
           class="flex flex-row items-center justify-center gap-x-8 grow lg:justify-start justify-between"
         >
           <a
+            onclick="if(locked) return; populate_array(array, range_value); display_array(array)"
             data-enabled="cursor-pointer hover:bg-blue-600 active:bg-blue-700 bg-blue-500"
             data-disabled="cursor-default hover:bg-red-500 active:bg-red-500 bg-red-500"
             class="rounded-full transition-all select-none flex items-center justify-center px-4 py-2 h-fit text-white font-semibold"
