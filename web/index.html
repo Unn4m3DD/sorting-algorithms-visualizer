@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Sorting Visualizer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto Mono"
       rel="stylesheet"
@@ -30,7 +29,9 @@
             New Array
           </a>
           <div class="flex flex-col items-center gap-1">
-            <a class="flex min-w-fit font-semibold select-none text-gray-800">Array Size</a>
+            <a class="flex min-w-fit font-semibold select-none text-gray-800"
+              >Array Size</a
+            >
             <input
               type="range"
               min="30"
@@ -90,8 +91,7 @@
             </div>
           </div>
           <div
-            data-enabled="cursor-pointer hover:bg-cyan-600 active:bg-cyan-700 bg-cyan-500"
-            class="rounded-full py-2 px-4 transition-all select-none text-white min-w-fit"
+            class="rounded-full py-2 px-4 transition-all select-none text-white min-w-fit cursor-pointer hover:bg-cyan-600 active:bg-cyan-700 bg-cyan-500"
             onclick="circle_draw = !circle_draw; canvas.style.display = circle_draw ? 'flex' : 'none'; bar_container.style.display = !circle_draw ? 'flex' : 'none'; display_array(array)"
           >
             Toggle Circle

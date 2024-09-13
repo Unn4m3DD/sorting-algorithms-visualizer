@@ -12,19 +12,17 @@ bar_container.style.display = !circle_draw ? "flex" : "none";
 var context = canvas.getContext("2d");
 const set_locked = () => {
   locked = true;
-  document
-    .querySelectorAll("[data-disabled]")
-    .forEach((e) =>
-      e.classList.add(...e.getAttribute("data-disabled").split(" "))
-    );
+  document.querySelectorAll("[data-disabled]").forEach((e) => {
+    e.classList.add(...e.getAttribute("data-disabled").split(" "));
+    e.classList.remove(...e.getAttribute("data-enabled").split(" "));
+  });
 };
 const set_unlocked = () => {
   locked = false;
-  document
-    .querySelectorAll("[data-enabled]")
-    .forEach((e) =>
-      e.classList.add(...e.getAttribute("data-enabled").split(" "))
-    );
+  document.querySelectorAll("[data-enabled]").forEach((e) => {
+    e.classList.add(...e.getAttribute("data-enabled").split(" "));
+    e.classList.remove(...e.getAttribute("data-disabled").split(" "));
+  });
 };
 set_unlocked();
 Object.defineProperty(Array.prototype, "shuffle", {
@@ -83,9 +81,9 @@ const display_array = (array) => {
       context.closePath();
       context.fill();
     } else {
-      content += `\n<div class="bar" style="height: ${Math.floor(
+      content += `\n<div class="bar" style="height: ${
         (element / max) * 100
-      )}%; width: ${100 / array.length}%; background-color: ${
+      }%; width: ${100 / array.length}%; background-color: ${
         !current.contains(element)
           ? `hsl(${Math.floor(Math.round((element * 360) / max))}, 100%, 50%)`
           : "#0000"
